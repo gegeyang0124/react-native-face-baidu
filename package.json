@@ -1,0 +1,31 @@
+{
+  "name": "react-native-face-baidu",
+  "version": "1.0.0",
+  "description": "封装百度人脸识别sdk",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gegeyang0124/react-native-face-baidu.git"
+  },
+  "keywords": [
+    "react-native-face-baidu",
+    "react-native",
+    "baidu",
+    "face",
+    "react-native-face"
+  ],
+  "author": {
+    "name": "周阳",
+    "email": "584450903@qq.com",
+    "url": "https://github.com/gegeyang0124",
+    "blog":"http://blog.sina.com.cn/s/articlelist_6078695441_0_1.html"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gegeyang0124/react-native-face-baidu/issues"
+  },
+  "homepage": "https://github.com/gegeyang0124/react-native-face-baidu#readme"
+}
