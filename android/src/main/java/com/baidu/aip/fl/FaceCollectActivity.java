@@ -540,7 +540,7 @@ public class FaceCollectActivity extends AppCompatActivity {
      */
     private void reg(String filePath) {
         if (TextUtils.isEmpty(mUid)) {
-            Toast.makeText(FaceCollectActivity.this, "姓名不能为空", Toast.LENGTH_SHORT).show();
+            Toast.makeText(FaceCollectActivity.this, "请登录...", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -602,7 +602,6 @@ public class FaceCollectActivity extends AppCompatActivity {
             @Override
             public void onResult(RegResult result) {
                 Log.i("wtf", "orientation->" + result.getJsonRes());
-                toast("注册成功！");
                 Intent intent=getIntent();
                 intent.putExtra("path",facePath);
                 setResult(RESULT_OK,intent);
@@ -611,7 +610,7 @@ public class FaceCollectActivity extends AppCompatActivity {
 
             @Override
             public void onError(FaceError error) {
-                toast("注册失败");
+                toast("上传失败");
             }
         }, file, uid, mUid);
     }

@@ -30,8 +30,12 @@ public class BaiduFace extends ReactContextBaseJavaModule {
         public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
             super.onActivityResult(activity, requestCode, resultCode, data);
             if (requestCode == FACE_REQUEST_CODE) {
-                String path=data.getStringExtra("path");
-                mPromise.resolve(path);
+                if (resultCode == -1) {
+                    String path = data.getStringExtra("path");
+                    mPromise.resolve(path);
+                }else {
+                    mPromise.reject("-1","user closed detect activity");
+                }
             }
         }
     };
