@@ -12,4 +12,6 @@
 
 - (void)passData:(NSDictionary *)data;
 
+- (void)registerFaceWithImageBaseString:(NSString *)imageStr;
+
 @end

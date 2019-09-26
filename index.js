@@ -19,8 +19,10 @@ const EventEmitter = new NativeEventEmitter(SDK);
 const BaiduFace = Platform.select({
     android: SDK,
     ios: {
-        detect: () => {
-            return IOSSDKSupport('detect');
+        init:(client_id,client_secret)=>SDK.init(client_id,client_secret),
+        detect: (options) => {
+            return SDK.detect(options);
+            // return IOSSDKSupport('detect');
         },
         liveness: () => {
             return IOSSDKSupport('liveness');
@@ -39,10 +41,25 @@ const BaiduFace = Platform.select({
 });
 
 export default {
+
     /**
-     * 人脸检测后会自动拍照
+     * 初始化获取token
+     * @param {应用的API Key} client_id
+     * @param {应用的Secret Key} client_secret
      */
-    detect: () => BaiduFace.detect(),
+    init:(client_id,client_secret)=>BaiduFace.init(client_id,client_secret),
+
+    /**
+     * 人脸检测后会自动拍照 注册人像
+     * @param {注册参数} options
+     * options={
+                    userId:"用户ID",
+                    userName:"用户名",
+                    groupId:"用户分组"
+                }
+     *
+     */
+    detect: (options) => BaiduFace.detect(options),
     /**
      * 活体检测
      */
