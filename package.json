@@ -1,6 +1,6 @@
 {
   "name": "react-native-face-baidu",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "封装百度人脸识别sdk",
   "main": "index.js",
   "scripts": {
