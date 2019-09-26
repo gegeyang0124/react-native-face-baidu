@@ -10,7 +10,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-@class FaceInfo;
 
 #define TIME_THRESHOLD_FOR_ANOTHER_SESSION 2.0
 
@@ -47,42 +46,22 @@ typedef NS_ENUM(NSUInteger, DetectRemindCode) {
     DetectRemindCodeConditionMeet
 };
 
-
-typedef NS_ENUM(NSUInteger, TrackDetectRemindCode) {
-    TrackDetectRemindCodeOK = 0, //成功
-    TrackDetectRemindCodeImageBlured, //图像模糊
-    TrackDetectRemindCodePoorIllumination, // 光照不足
-    TrackDetectRemindCodeNoFaceDetected, //没有检测到人脸
-    TrackDetectRemindCodeOcclusionLeftEye,   //左眼有遮挡
-    TrackDetectRemindCodeOcclusionRightEye,  //右眼有遮挡
-    TrackDetectRemindCodeOcclusionNose, //鼻子有遮挡
-    TrackDetectRemindCodeOcclusionMouth,    //嘴巴有遮挡
-    TrackDetectRemindCodeOcclusionLeftContour,  //左脸颊有遮挡
-    TrackDetectRemindCodeOcclusionRightContour, //右脸颊有遮挡
-    TrackDetectRemindCodeOcclusionChinCoutour,  //下颚有遮挡
-    TrackDetectRemindCodeTooClose,  //太近
-    TrackDetectRemindCodeTooFar,    //太远
-    TrackDetectRemindCodeBeyondPreviewFrame   //出框
-    
-};
-
-typedef void (^DetectStrategyCompletion) (FaceInfo * faceinfo,NSDictionary * images, DetectRemindCode remindCode);
-
-typedef void (^TrackDetectStrategyCompletion) (FaceInfo * faceinfo, TrackDetectRemindCode remindCode);
+typedef void (^DetectStrategyCompletion) (NSDictionary * images, DetectRemindCode remindCode);
 
 @interface IDLFaceDetectionManager : NSObject
 
+// 识别人脸的最大数目，默认是1
+@property (nonatomic, assign) NSInteger maxFaceCount;
+// 声音的开关
 @property (nonatomic, assign) BOOL enableSound;
 
 + (instancetype)sharedInstance;
 
-/*带黑边的方法*/
-- (void)detectStratrgyWithQualityControlImage:(UIImage *)image previewRect:(CGRect)previewRect detectRect:(CGRect)detectRect completionHandler:(DetectStrategyCompletion)completion;
+- (void)detectStratrgyWithImage:(UIImage *)image previewRect:(CGRect)previewRect detectRect:(CGRect)detectRect completionHandler:(DetectStrategyCompletion)completion;
 
-/*不带黑边*/
-- (void)detectStratrgyWithNormalImage:(UIImage *)image previewRect:(CGRect)previewRect detectRect:(CGRect)detectRect completionHandler:(DetectStrategyCompletion)completion;
+- (void)detectMultiFacesImage:(UIImage *)image handler:(DetectStrategyCompletion)completion;
 
-- (void)detectMultiFacesImage:(UIImage *)image withMaxFaceCount:(NSInteger)maxFaceCount handler:(TrackDetectStrategyCompletion)completion;
+- (void)detectTurnstileImage:(UIImage *)image handler:(DetectStrategyCompletion)completion;
 
 - (void)reset;
 

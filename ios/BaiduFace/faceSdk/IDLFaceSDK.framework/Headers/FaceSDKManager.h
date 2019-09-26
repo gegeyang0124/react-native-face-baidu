@@ -51,38 +51,7 @@ typedef NS_ENUM(NSUInteger, ResultCode) {
     ResultCodeUnknowType            //未知类型
 };
 
-
-typedef NS_ENUM(NSUInteger, TrackResultCode) {
-    TrackResultCodeOK,
-    TrackResultCodeImageBlured,     // 图像模糊
-    TrackResultCodePoorIllumination, // 光照不行
-    TrackResultCodeNoFaceDetected,    //没有检测到人脸
-    TrackResultCodeOcclusionLeftEye,  //左眼有遮挡
-    TrackResultCodeOcclusionRightEye, //右眼有遮挡
-    TrackResultCodeOcclusionNose,     //鼻子有遮挡
-    TrackResultCodeOcclusionMouth,    //嘴巴有遮挡
-    TrackResultCodeOcclusionLeftContour,  //左脸颊有遮挡
-    TrackResultCodeOcclusionRightContour, //右脸颊有遮挡
-    TrackResultCodeOcclusionChinCoutour,  //下颚有遮挡
-    TrackResultCodeVerifyInitError,          //鉴权失败
-    TrackResultCodeVerifyDecryptError,
-    TrackResultCodeVerifyInfoFormatError,
-    TrackResultCodeVerifyExpired,
-    TrackResultCodeVerifyMissRequiredInfo,
-    TrackResultCodeVerifyInfoCheckError,
-    TrackResultCodeVerifyLocalFileError,
-    TrackResultCodeVerifyRemoteDataError,
-    TrackResultCodeUnknowType            //未知类型
-};
-
-
-
 @class FaceInfo;
-
-typedef void (^BDFaceDetectCompletion)(FaceInfo * faceinfo, ResultCode resultCode);
-typedef void (^BDFaceLivenessCompletion)(FaceInfo * faceinfo, LivenessState* state, ResultCode resultCode);
-typedef void (^BDFacetrackDetectCompletion)(FaceInfo * faceinfo, TrackResultCode resultCode);
-
 @interface FaceSDKManager : NSObject
 
 @property (nonatomic, assign) CGFloat conditionTimeout;
@@ -117,11 +86,9 @@ typedef void (^BDFacetrackDetectCompletion)(FaceInfo * faceinfo, TrackResultCode
 
 - (void)setConditionTimeout:(CGFloat)timeout;
 
-- (void)trackDetectWithImage:(UIImage *)image withMaxFaceCount:(NSInteger)maxFaceCount completion: (BDFacetrackDetectCompletion)completion;
+- (void)detectWithImage:(UIImage *)image completion: (void (^)(FaceInfo * faceinfo, ResultCode resultCode))completion;
 
-- (void)detectWithImage:(UIImage *)image completion: (BDFaceDetectCompletion)completion;
-
-- (void)livenessWithImage:(UIImage *)image completion:(BDFaceLivenessCompletion)completion;
+- (void)livenessWithImage:(UIImage *)image completion:(void (^)(FaceInfo * faceinfo, LivenessState* state, ResultCode resultCode))completion;
 
 + (NSString *)getVersion;
 
@@ -136,9 +103,5 @@ typedef void (^BDFacetrackDetectCompletion)(FaceInfo * faceinfo, TrackResultCode
 @property (nonatomic, assign) CGFloat score;
 @property (nonatomic, strong) NSArray * headPose;
 @property (nonatomic, strong) NSArray * cropImages;
-/**
- * 裁剪没有黑边的图片
- */
-@property (nonatomic, strong) NSArray *cropFaces;
 
 @end

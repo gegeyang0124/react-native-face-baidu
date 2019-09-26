@@ -60,8 +60,9 @@
      *不论带不带黑边，取图片都是：images[@"bestImage"]
      */
     //带黑边的方法
-    [[IDLFaceDetectionManager sharedInstance]detectStratrgyWithQualityControlImage:image previewRect:self.previewRect detectRect:self.detectRect completionHandler:^(FaceInfo *faceinfo, NSDictionary *images, DetectRemindCode remindCode) {
-        switch (remindCode) {
+//    [[IDLFaceDetectionManager sharedInstance]detectStratrgyWithQualityControlImage:image previewRect:self.previewRect detectRect:self.detectRect completionHandler:^(FaceInfo *faceinfo, NSDictionary *images, DetectRemindCode remindCode) {
+  [[IDLFaceDetectionManager sharedInstance] detectStratrgyWithImage:image previewRect:self.previewRect detectRect:self.detectRect completionHandler:^(NSDictionary *images, DetectRemindCode remindCode) {
+    switch (remindCode) {
             case DetectRemindCodeOK: {
                 weakSelf.hasFinished = YES;
                 [self warningStatus:CommonStatus warning:@"非常好"];

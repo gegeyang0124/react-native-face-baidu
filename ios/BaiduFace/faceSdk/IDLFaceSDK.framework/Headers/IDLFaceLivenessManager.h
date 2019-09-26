@@ -56,6 +56,8 @@ typedef NS_ENUM(NSUInteger, LivenessRemindCode) {
 typedef void (^LivenessStrategyCompletion) (NSDictionary * images, LivenessRemindCode remindCode);
 
 @interface IDLFaceLivenessManager : NSObject
+
+// 声音的开关
 @property (nonatomic, assign) BOOL enableSound;
 
 + (instancetype)sharedInstance;

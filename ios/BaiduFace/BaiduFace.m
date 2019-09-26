@@ -30,8 +30,8 @@
     NSAssert([[NSFileManager defaultManager] fileExistsAtPath:licensePath], @"license文件路径不对，请仔细查看文档");
 //    NSString *faceLicenseId = [[NSBundle mainBundle] objectForInfoDictionaryKey:FACE_LICENSE_ID];
     [[FaceSDKManager sharedInstance] setLicenseID:FACE_LICENSE_ID andLocalLicenceFile:licensePath];
-    NSLog(@"canWork = %d",[[FaceSDKManager sharedInstance] canWork]);
-    NSLog(@"version = %@",[[FaceVerifier sharedInstance] getVersion]);
+//    NSLog(@"canWork = %d",[[FaceSDKManager sharedInstance] canWork]);
+//    NSLog(@"version = %@",[[FaceVerifier sharedInstance] getVersion]);
 }
 
 @end

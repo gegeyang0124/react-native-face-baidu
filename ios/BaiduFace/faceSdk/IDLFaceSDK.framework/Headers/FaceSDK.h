@@ -52,6 +52,7 @@ typedef enum {
     LicenseRemoteDataError
 } FaceLicenseErrorCode;
 
+
 NS_ASSUME_NONNULL_BEGIN
 @interface LivenessState : NSObject
 /** 眼状态 */
