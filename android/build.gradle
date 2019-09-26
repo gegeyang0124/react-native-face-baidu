@@ -1,0 +1,47 @@
+/*
+ * Copyright (C) 2017 Baidu, Inc. All Rights Reserved.
+ */
+apply plugin: "com.android.library"
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.2"
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+
+    signingConfigs {
+
+
+//        def password = "替换为签名密码"
+//        def alias = "替换为签名别名"
+//        def filePath = "替换为签名文件路径"  //如  ../facesharp.jks//签名文件路径
+    }
+}
+
+//repositories {
+//    flatDir {
+//        dirs 'libs', project(':facesdk').file('libs')
+//    }
+//}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile files('libs/FaceSDK.jar')
+    compile files('libs/baidu_license.jar')
+    compile files('libs/ast.jar')
+    compile 'com.android.support:appcompat-v7:28.0.0'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile "com.facebook.react:react-native:+"
+}

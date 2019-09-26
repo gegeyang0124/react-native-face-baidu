@@ -17,7 +17,27 @@ const IOSSDKSupport = (method) => {
 const SDK = NativeModules.BaiduFace;
 const EventEmitter = new NativeEventEmitter(SDK);
 const BaiduFace = Platform.select({
-    android: SDK,
+    android: {
+        init:(client_id,client_secret)=>SDK.init(client_id,client_secret),
+        detect: (options) => {
+            return SDK.detect(options);
+        },
+        liveness: () => {
+            // return AndroidSDKSupport('liveness');
+        },
+        config: (opt) => {
+            // return new Promise(resolve => {
+            //     const subscript = EventEmitter.addListener('success', (data) => {
+            //         resolve(true);
+            //         subscript.remove();
+            //     });
+            //     SDK.config(opt);
+            // });
+        },
+        LivenessType:{
+            // SDK.LivenessType
+        },
+    },
     ios: {
         init:(client_id,client_secret)=>SDK.init(client_id,client_secret),
         detect: (options) => {
@@ -41,7 +61,6 @@ const BaiduFace = Platform.select({
 });
 
 export default {
-
     /**
      * 初始化获取token
      * @param {应用的API Key} client_id
