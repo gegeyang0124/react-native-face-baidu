@@ -14,17 +14,30 @@
     BAIDU_FACE_SDK_LICENSE_ID="*license*"
     BAIDU_FACE_SDK_LICENSE_FILE_NAME="idl-license.face-android" # 可不配, 默认为 idl-license.face-android
     ...
+	```
+	```
+	在setting.gradle中添加
+	```
+	include ':react-native-face-baidu'
+	project(':react-native-face-baidu').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-face-baidu/android')
     ```
     - 在 MainApplication.java 中添加
     ```java
-    import com.baidu.idl.face.BaiduFace; /* 在顶部添加 */
-    ...
+    import com.baidu.aip.fl.BaiduFacePackage; /* 在顶部添加 */
+
+    getPackages()里添加
+    new BaiduMapPackage(),
+	
+    
     @Override
     public void onCreate() {
         super.onCreate();
         SoLoader.init(this, /* native exopackage */ false);
-        BaiduFace.init(this); /* 在 onCreate 中添加 */
     }
+    ```
+    -在主项目的build.gradle的dependencies里添加
+	```
+    implementation project(':react-native-face-baidu')
     ```
     - 把 license 文件放入 android/app/src/main/assets 目录
   </details>
