@@ -54,8 +54,20 @@
 ```javascript
 import BaiduFace from "react-native-face-baidu";
 
+//必须先初始化一次人脸识别，qpp运行期间，只需要启动一次
+ /**
+     * 初始化获取token
+     * @param {应用的API Key} client_id
+     * @param {应用的Secret Key} client_secret
+     */
+BaiduFace.init(client_id,client_secret);
+
 // 人脸图像采集
-BaiduFace.detect();
+BaiduFace.detect({ 
+      userId:"用户ID",
+      userName:"用户名",
+      groupId:"用户分组"
+    });
 
 // 活体检测
 BaiduFace.liveness()
